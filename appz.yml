@@ -1,7 +1,7 @@
     app:
         name: MySQL
         code: mysql
-        notify: nmeeran@cloudbourne.com
+        notify: dkarthik@cloudbourne.com
 
     build:
         version: 5.7
@@ -11,7 +11,7 @@
         image_template: mysql-5.7
 
     deploy:
-        context: nashida2210/DEV
+        context: dinesh-kd7/DEV
         type: statefulset
         replicas: 1
         ingress: none
@@ -20,10 +20,14 @@
 
     volumes:
       - claim: mysql-data
+        class: openebs-replicated
+        matchLabels: false
         mount: /var/lib/mysql
         name: data
         size: 5Gi
       - claim: mysql-backup
+        class: openebs-replicated
+        matchLabels: false
         mount: /appz/backup
         name: backup
         size: 5Gi
@@ -35,4 +39,4 @@
           vault: MYSQL_SPRINGBOOTWEB_PASSWORD
         MYSQL_WORDPRESS_PASSWORD:
           vault: MYSQL_WORDPRESS_PASSWORD
-        revision : 25
+        revision : 0
