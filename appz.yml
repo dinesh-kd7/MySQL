@@ -22,7 +22,7 @@
       - claim: mysql-data
         class: openebs-replicated
         matchLabels: false
-        mount: /var/lib/mysql
+        mount: /appz/data
         name: data
         size: 5Gi
       - claim: mysql-backup
